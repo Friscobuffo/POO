@@ -35,7 +35,7 @@ public class Stanza {
 	 */
 	public Stanza(String nome) {
 		this.nome = nome;
-		this.stanzeAdiacenti = new HashMap<String, Stanza>();
+		this.stanzeAdiacenti = new HashMap<>();
 		this.attrezzi = new HashMap<String, Attrezzo>();
 	}
 
