@@ -54,8 +54,7 @@ public class Attrezzo {
 	@Override
 	public boolean equals(Object o) {
 		Attrezzo that = (Attrezzo) o;
-		return this.getNome().equals(that.getNome()) &&
-				this.getPeso() == that.getPeso();
+		return this.getNome().equals(that.getNome());
 	}
 	
 	@Override

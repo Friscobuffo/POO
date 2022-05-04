@@ -11,13 +11,13 @@ import it.uniroma3.diadia.giocatore.Borsa;
  * @param attrezzo stringa con il nome dell'attrezzo da posare
  */
 public class ComandoPosa extends BaseComando{
-	
+
 	private final static String NOME = "ComandoPosa";
 	@Override
 	public void esegui(Partita partita) {
 		IO io = this.getIo();
 		String attrezzo = this.getParametro();
-		
+
 		Borsa borsa = partita.getGiocatore().getBorsa();
 
 		if (borsa.isEmpty())
@@ -25,18 +25,15 @@ public class ComandoPosa extends BaseComando{
 		if (attrezzo == null)
 			io.mostraMessaggio("Che attrezzo vuoi posare?");
 
-		Attrezzo attrezzoDaPosare = borsa.removeAttrezzo(attrezzo); //null se non c'è
+		Attrezzo attrezzoDaPosare = borsa.removeAttrezzo(attrezzo); //null se non c'ï¿½
 		if (attrezzoDaPosare == null)
 			io.mostraMessaggio("L'attrezzo "+this.getParametro()+" non e' presente nella borsa");
-		else
-			if (partita.getStanzaCorrente().addAttrezzo(attrezzoDaPosare))
-				io.mostraMessaggio("L'attrezzo "+attrezzo+" e' stato posato.");				
-			else {
-				io.mostraMessaggio("L'attrezzo non puo' essere posato");
-				borsa.addAttrezzo(attrezzoDaPosare); //allora viene rimesso nella borsa
-			}
+		else {
+			partita.getStanzaCorrente().addAttrezzo(attrezzoDaPosare);
+			io.mostraMessaggio("L'attrezzo "+attrezzo+" e' stato posato.");				
+		}
 	}
-	
+
 	@Override
 	public String getNome() {
 		return NOME;

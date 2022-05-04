@@ -71,8 +71,4 @@ public class Partita {
 	public Giocatore getGiocatore() {
 		return this.giocatore;
 	}
-
-	public boolean giocatoreIsVivo() {
-		return this.giocatore.isVivo();
-	}
 }

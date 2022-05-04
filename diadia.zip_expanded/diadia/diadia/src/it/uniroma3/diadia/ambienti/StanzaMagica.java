@@ -28,11 +28,10 @@ public class StanzaMagica extends Stanza{
 	}
 	
 	@Override
-	public boolean addAttrezzo(Attrezzo attrezzo) {
-		contatoreAttrezziPosati++;
-		if (contatoreAttrezziPosati > sogliaMagica) {
+	public void addAttrezzo(Attrezzo attrezzo) {
+		if (++contatoreAttrezziPosati > sogliaMagica) {
 			attrezzo = modificaAttrezzo(attrezzo);
 		}
-		return super.addAttrezzo(attrezzo);
+		super.addAttrezzo(attrezzo);
 	}
 }

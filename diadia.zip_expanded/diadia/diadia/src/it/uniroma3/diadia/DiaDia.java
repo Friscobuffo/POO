@@ -34,8 +34,6 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 
-
-
 	private Partita partita;
 
 	public DiaDia(IO io, Labirinto labirinto) {
@@ -65,15 +63,20 @@ public class DiaDia {
 		comandoDaEseguire.esegui(this.partita);
 		if (this.partita.vinta())
 			io.mostraMessaggio("Hai vinto!");
-		if (!this.partita.giocatoreIsVivo())
+		if (!this.partita.getGiocatore().isVivo())
 			io.mostraMessaggio("Hai esaurito i CFU...");
 
 		return this.partita.isFinita();
 	}   
 
 	public static void main(String[] argc) {
-		IO io = new IOConsole();
-		Labirinto labirinto = new LabirintoBuilder()
+		IO io = new IOConsole();		
+		DiaDia gioco = new DiaDia(io, creaLabirinto());
+		gioco.gioca();
+	}
+	
+	public static Labirinto creaLabirinto() {
+		return new LabirintoBuilder()
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("osso",1)
 				.addStanza("Aula N10")
@@ -94,8 +97,5 @@ public class DiaDia {
 				.addAdiacenza("Aula N11", Stanza.OVEST)
 				.addAdiacenza("Biblioteca", "Atrio", Stanza.SUD)
 				.getLabirinto();
-		
-		DiaDia gioco = new DiaDia(io, labirinto);
-		gioco.gioca();
 	}
 }

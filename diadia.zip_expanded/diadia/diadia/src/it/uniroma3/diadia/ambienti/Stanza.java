@@ -87,8 +87,8 @@ public class Stanza {
 	 * @param attrezzo l'attrezzo da mettere nella stanza.
 	 * @return true se riesce ad aggiungere l'attrezzo, false atrimenti.
 	 */
-	public boolean addAttrezzo(Attrezzo attrezzo) {
-		return (attrezzi.put(attrezzo.getNome(), attrezzo) == null);
+	public void addAttrezzo(Attrezzo attrezzo) {
+		attrezzi.put(attrezzo.getNome(), attrezzo);
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class Stanza {
 	/**
 	 * Rimuove un attrezzo dalla stanza (ricerca in base al nome).
 	 * @param nomeAttrezzo
-	 * @return true se la rimozione è andata a buon fine,
+	 * @return true se la rimozione Ã¨ andata a buon fine,
 	 * 		   false altrimenti
 	 */
 	public boolean removeAttrezzo(Attrezzo attrezzo) {

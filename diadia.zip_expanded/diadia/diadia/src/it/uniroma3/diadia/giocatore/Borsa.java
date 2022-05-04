@@ -48,10 +48,10 @@ public class Borsa {
 
 	/**
 	 * Aggiunge un attrezzo alla borsa se possibile.
-	 * Se non è possibile o la borsa ha troppi attrezzi oppure
-	 * è troppo pesante.
+	 * Se non ï¿½ possibile o la borsa ha troppi attrezzi oppure
+	 * ï¿½ troppo pesante.
 	 * @param attrezzo l'attrezzo da aggiungere
-	 * @return true se l'attrezzo è stato aggiunto
+	 * @return true se l'attrezzo ï¿½ stato aggiunto
 	 * 		   false altrimenti
 	 */
 	public boolean addAttrezzo(Attrezzo attrezzo) {
@@ -94,9 +94,9 @@ public class Borsa {
 	}
 
 	/**
-	 * Verifica se la borsa è vuota
+	 * Verifica se la borsa ï¿½ vuota
 	 * 
-	 * @return boolean, true se la borsa è vuota, false altrimenti
+	 * @return boolean, true se la borsa ï¿½ vuota, false altrimenti
 	 */
 	public boolean isEmpty() {
 		return this.attrezzi.isEmpty();
@@ -121,7 +121,7 @@ public class Borsa {
 	 * 
 	 * @param nomeAttrezzo stringa con il nome dell'attrezzo da rimuovere
 	 * @return il riferimento dell'attrezzo rimosso se presente
-	 * 		   null se l'attrezzo non è presente
+	 * 		   null se l'attrezzo non ï¿½ presente
 	 */
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
 		return attrezzi.remove(nomeAttrezzo);
