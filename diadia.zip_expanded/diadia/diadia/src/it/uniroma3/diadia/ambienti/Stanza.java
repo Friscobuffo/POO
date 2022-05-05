@@ -87,8 +87,9 @@ public class Stanza {
 	 * @param attrezzo l'attrezzo da mettere nella stanza.
 	 * @return true se riesce ad aggiungere l'attrezzo, false atrimenti.
 	 */
-	public void addAttrezzo(Attrezzo attrezzo) {
+	public Attrezzo addAttrezzo(Attrezzo attrezzo) {
 		attrezzi.put(attrezzo.getNome(), attrezzo);
+		return attrezzo;
 	}
 
 	/**

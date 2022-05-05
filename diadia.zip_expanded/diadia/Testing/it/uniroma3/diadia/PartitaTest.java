@@ -14,8 +14,7 @@ public class PartitaTest {
 	private Partita partita;
 	
 	@Before
-	public void setUp() {
-		
+	public void setUp() {		
 		this.partita = new Partita(Fixture.creaLabirintoBaseDueStanze());
 	}
 
@@ -32,20 +31,26 @@ public class PartitaTest {
 	}
 	
 	@Test
-	public void testIsFinitaPartitaNonFinita() {
+	public void testIsFinita_PartitaNonFinita() {
 		assertFalse(this.partita.isFinita());
-		}
+	}
 	
 	@Test
-	public void testIsFinitaPartitaFinitaZeroCfu() {
+	public void testIsFinita_PartitaFinitaZeroCfu() {
 		this.partita.getGiocatore().setCfu(0);
 		assertTrue(this.partita.isFinita());
-	
 	}
 
 	@Test
-	public void testSetFinitaF() {
+	public void testIsFinita_PartitaSettataFinita() {
 		this.partita.setFinita();
+		assertTrue(this.partita.isFinita());
+	}
+	
+	@Test
+	public void testIsFinita_PartitaFinitaVinta() {
+		Stanza s = this.partita.getStanzaVincente();
+		this.partita.setStanzaCorrente(s);
 		assertTrue(this.partita.isFinita());
 	}
 

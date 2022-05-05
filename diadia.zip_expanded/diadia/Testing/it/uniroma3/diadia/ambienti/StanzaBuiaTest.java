@@ -12,6 +12,7 @@ public class StanzaBuiaTest {
 	private StanzaBuia stanzaBuia;
 	private final static String NOME = "Stanza buia";
 	private final static String ATTREZZO_LUCE = "Attrezzo luce";
+	private final static String ATTREZZO_SBAGLIATO = "Attrezzo sbagliato";
 	private Attrezzo attrezzoLuce;
 	
 	@Before
@@ -31,9 +32,16 @@ public class StanzaBuiaTest {
 	
 	@Test
 	public void testGetDescrizioneConAttrezzoLuce() {
-		this.stanzaBuia.addAttrezzo(attrezzoLuce);
+		this.stanzaBuia.addAttrezzo(new Attrezzo(ATTREZZO_LUCE, 0));
 		String descrizione = this.stanzaBuia.getDescrizione();
 		String toString = this.stanzaBuia.toString();
 		assertEquals(toString, descrizione);
+	}
+	
+	@Test
+	public void testGetDescrizioneConAttrezzoSbagliato() {
+		this.stanzaBuia.addAttrezzo(new Attrezzo(ATTREZZO_SBAGLIATO, 0));
+		String descrizione = this.stanzaBuia.getDescrizione();
+		assertEquals(StanzaBuia.BUIO, descrizione);
 	}
 }
