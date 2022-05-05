@@ -20,17 +20,21 @@ public class ComandoPosa extends BaseComando{
 
 		Borsa borsa = partita.getGiocatore().getBorsa();
 
-		if (borsa.isEmpty())
+		if (borsa.isEmpty()) {
 			io.mostraMessaggio("La borsa e' vuota");
-		if (attrezzo == null)
+			return;
+		}
+		if (attrezzo == null) {
 			io.mostraMessaggio("Che attrezzo vuoi posare?");
+			return;
+		}
 
-		Attrezzo attrezzoDaPosare = borsa.removeAttrezzo(attrezzo); //null se non c'�
+		Attrezzo attrezzoDaPosare = borsa.removeAttrezzo(attrezzo); //null se non c'è
 		if (attrezzoDaPosare == null)
-			io.mostraMessaggio("L'attrezzo "+this.getParametro()+" non e' presente nella borsa");
+			io.mostraMessaggio("L'attrezzo <"+this.getParametro()+"> non e' presente nella borsa");
 		else {
 			partita.getStanzaCorrente().addAttrezzo(attrezzoDaPosare);
-			io.mostraMessaggio("L'attrezzo "+attrezzo+" e' stato posato.");				
+			io.mostraMessaggio("L'attrezzo <"+attrezzo+"> e' stato posato.");				
 		}
 	}
 

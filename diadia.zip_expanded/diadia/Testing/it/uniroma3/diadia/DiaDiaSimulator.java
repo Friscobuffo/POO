@@ -13,6 +13,7 @@ public class DiaDiaSimulator {
 	public void testPartitaCompleta() {
 		Labirinto labirinto = Fixture.creaLabirintoCompleto();
 		List<String> istruzioni = Fixture.istruzioniPartitaCompleta();
+		
 		Fixture.creaSimulazionePartitaEGioca(istruzioni, labirinto);
 	}
 }

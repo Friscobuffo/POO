@@ -27,10 +27,10 @@ public class ComandoPrendi extends BaseComando {
 		if (a==null) io.mostraMessaggio("L'attrezzo "+attrezzo+" non e' presente nella stanza.");
 		else
 			if (partita.getGiocatore().getBorsa().addAttrezzo(a)) {
-				io.mostraMessaggio("L'attrezzo "+attrezzo+" e' stato preso.");
+				io.mostraMessaggio("L'attrezzo "+attrezzo+" e' stato messo nella borsa.");
 				partita.getStanzaCorrente().removeAttrezzo(a);
 			}
-			else io.mostraMessaggio("La borsa è piena.");
+			else io.mostraMessaggio("La borsa e' piena.");
 	}
 	
 	@Override

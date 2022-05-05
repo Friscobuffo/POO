@@ -42,27 +42,7 @@ public class Fixture {
 	}
 	
 	public static Labirinto creaLabirintoCompleto() {
-		return new LabirintoBuilder()
-				.addStanzaIniziale("Atrio")
-				.addAttrezzo("osso",1)
-				.addStanza("Aula N10")
-				.addAttrezzo("lanterna", 3)
-				.addStanza("Aula N11")
-				.addStanza("Laboratorio Campus")
-				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", Stanza.NORD)
-				.addAdiacenza("Aula N11", Stanza.EST)
-				.addAdiacenza("Aula N10", Stanza.SUD)
-				.addAdiacenza("Laboratorio Campus", Stanza.OVEST)
-				.addAdiacenza("Aula N11", "Laboratorio Campus", Stanza.EST)
-				.addAdiacenza("Atrio", Stanza.OVEST)
-				.addAdiacenza("Aula N10", "Atrio", Stanza.NORD)
-				.addAdiacenza("Aula N11", Stanza.EST)
-				.addAdiacenza("Laboratorio Campus", Stanza.OVEST)
-				.addAdiacenza("Laboratorio Campus", "Atrio", Stanza.EST)
-				.addAdiacenza("Aula N11", Stanza.OVEST)
-				.addAdiacenza("Biblioteca", "Atrio", Stanza.SUD)
-				.getLabirinto();
+		return DiaDia.creaLabirinto();
 	}
 	
 	public static List<String> istruzioniPartitaCompleta() {

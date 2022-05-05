@@ -14,8 +14,8 @@ public class ComandoAiuto extends BaseComando {
 	
 	@Override
 	public void esegui(Partita partita) {
-		for(int i=0; i<elencoComandi.length; i++) 
-			this.getIo().mostraMessaggio(elencoComandi[i]+" ");
+		for(String comando : elencoComandi) 
+			this.getIo().mostraMessaggio(comando + " ");
 	}
 
 	@Override

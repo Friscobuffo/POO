@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -43,7 +42,7 @@ public class Borsa {
 	 * @return LinkedList di attrezzi
 	 */
 	public List<Attrezzo> getAttrezzi() {
-		return new LinkedList<Attrezzo>(this.attrezzi.values());
+		return new ArrayList<Attrezzo>(this.attrezzi.values());
 	}
 
 	/**
