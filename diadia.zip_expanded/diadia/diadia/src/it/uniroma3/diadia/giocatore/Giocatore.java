@@ -30,6 +30,10 @@ public class Giocatore {
 		return this.borsa;
 	}
 
+	/**
+	 * Verifica che il giocatore è ancora vivo
+	 * @return boolean true se è vivo, false altrimenti
+	 */
 	public boolean isVivo() {
 		return this.cfu>0;
 	}
