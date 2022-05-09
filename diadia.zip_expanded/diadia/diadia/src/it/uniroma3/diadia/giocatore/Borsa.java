@@ -128,7 +128,7 @@ public class Borsa {
 	}
 	
 	/**
-	 * Ordina gli attrezzi presenti nella borsa in base al peso in
+	 * Ordina gli attrezzi presenti nella borsa in una lista, in base al peso in
 	 * maniera crescente.
 	 * 
 	 * @return la lista di attrezzi
@@ -139,12 +139,24 @@ public class Borsa {
 		return attrezzi;
 	}
 
+	/**
+	 * Ordina gli attrezzi presenti nella borsa in un sorted set, in base al nome in
+	 * maniera crescente.
+	 * 
+	 * @return il sorted set di attrezzi
+	 */
 	public SortedSet<Attrezzo> getSortedSetOrdinatoPerNome() {
 		SortedSet<Attrezzo> attrezzi = new TreeSet<Attrezzo>(new ComparatoreAttrezziPerNome());
 		attrezzi.addAll(this.attrezzi.values());
 		return attrezzi;
 	}
 	
+	/**
+	 * Ordina gli attrezzi presenti nella borsa in un sorted set in base al peso, in
+	 * maniera crescente.
+	 * 
+	 * @return il sorted set di attrezzi
+	 */
 	public SortedSet<Attrezzo> getSortedSetOrdinatoPerPeso() {
 		SortedSet<Attrezzo> attrezzi = new TreeSet<Attrezzo>(new ComparatoreAttrezziPerPeso());
 		attrezzi.addAll(this.attrezzi.values());
