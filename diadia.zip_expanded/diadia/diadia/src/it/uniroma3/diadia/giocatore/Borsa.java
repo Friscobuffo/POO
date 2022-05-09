@@ -115,6 +115,7 @@ public class Borsa {
 	public int numeroAttrezzi() {
 		return this.attrezzi.size();
 	}
+	
 	/**
 	 * Rimuove un attrezzo dalla borsa se presente.
 	 * 
@@ -126,6 +127,12 @@ public class Borsa {
 		return attrezzi.remove(nomeAttrezzo);
 	}
 	
+	/**
+	 * Ordina gli attrezzi presenti nella borsa in base al peso in
+	 * maniera crescente.
+	 * 
+	 * @return la lista di attrezzi
+	 */
 	public List<Attrezzo> getListaAttrezziOrdinataPerPeso() {
 		List<Attrezzo> attrezzi = new ArrayList<Attrezzo>(this.attrezzi.values());
 		Collections.sort(attrezzi, new ComparatoreAttrezziPerPeso());
