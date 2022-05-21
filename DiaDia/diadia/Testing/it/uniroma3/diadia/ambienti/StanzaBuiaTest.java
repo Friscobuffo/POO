@@ -32,7 +32,7 @@ public class StanzaBuiaTest {
 	
 	@Test
 	public void testGetDescrizioneConAttrezzoLuce() {
-		this.stanzaBuia.addAttrezzo(new Attrezzo(ATTREZZO_LUCE, 0));
+		this.stanzaBuia.addAttrezzo(this.attrezzoLuce);
 		String descrizione = this.stanzaBuia.getDescrizione();
 		String toString = this.stanzaBuia.toString();
 		assertEquals(toString, descrizione);
