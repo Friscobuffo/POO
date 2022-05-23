@@ -41,7 +41,7 @@ public class Fixture {
 	}
 	
 	public static Labirinto creaLabirintoCompleto() {
-		return DiaDia.creaLabirinto();
+		return Labirinto.labirintoDiaDia();
 	}
 	
 	public static List<String> istruzioniPartitaCompleta() {

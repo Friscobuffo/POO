@@ -14,6 +14,8 @@ public class FabbricaDiComandiRiflessiva implements FabbricaDiComandi {
 			nomeComando = scannerDiParole.next();//prima parola: nome del comando
 		if (scannerDiParole.hasNext())
 			parametro = scannerDiParole.next();//seconda parola: eventuale parametro
+		if (scannerDiParole.hasNext())
+			parametro += " " + scannerDiParole.next();
 
 		try {
 			String nomeClasse = "it.uniroma3.diadia.comandi.Comando";

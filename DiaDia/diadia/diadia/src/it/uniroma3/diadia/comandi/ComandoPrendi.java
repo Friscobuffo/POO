@@ -9,10 +9,8 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * 
  * @param attrezzo stringa con il nome dell'attrezzo da prendere
  */
-public class ComandoPrendi extends BaseComando {
+public class ComandoPrendi extends Comando {
 
-	private final static String NOME = "ComandoPrendi";
-	
 	@Override
 	public void esegui(Partita partita) {
 		IO io = this.getIo();
@@ -31,10 +29,5 @@ public class ComandoPrendi extends BaseComando {
 				partita.getStanzaCorrente().removeAttrezzo(a);
 			}
 			else io.mostraMessaggio("La borsa e' piena.");
-	}
-	
-	@Override
-	public String getNome() {
-		return NOME;
 	}
 }

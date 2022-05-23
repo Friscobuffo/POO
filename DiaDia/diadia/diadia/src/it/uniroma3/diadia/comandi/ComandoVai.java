@@ -9,9 +9,8 @@ import it.uniroma3.diadia.ambienti.Stanza;
  * e ne stampa il nome, altrimenti stampa un messaggio di errore
  */
 
-public class ComandoVai extends BaseComando{
+public class ComandoVai extends Comando{
 	
-	private final static String NOME = "ComandoVai";
 	@Override
 	public void esegui (Partita partita) {
 		String direzione = this.getParametro();
@@ -34,10 +33,5 @@ public class ComandoVai extends BaseComando{
 			}
 		}
 		io.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
-	}
-	
-	@Override
-	public String getNome() {
-		return NOME;
 	}
 }

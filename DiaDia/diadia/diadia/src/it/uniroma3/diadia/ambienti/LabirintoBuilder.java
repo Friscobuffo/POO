@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.personaggi.Cane;
+import it.uniroma3.diadia.personaggi.Mago;
 
 public class LabirintoBuilder{
 
@@ -120,15 +122,23 @@ public class LabirintoBuilder{
 		this.ultimaStanza = this.stanze.get(nomeStanza1);
 		return this;
 	}
-
-	public LabirintoBuilder addAdiacenza(String nomeStanza2, String direzione) {
-		Stanza stanza2 = stanze.get(nomeStanza2);
-		this.ultimaStanza.impostaStanzaAdiacente(direzione, stanza2);
+	
+	public LabirintoBuilder addMago(String nomeMago, Attrezzo attrezzo) {
+		Mago mago = new Mago(nomeMago, attrezzo);
+		this.ultimaStanza.setPersonaggio(mago);
 		return this;
 	}
+	
+	public LabirintoBuilder addCane() {
+		Cane cane = new Cane();
+		this.ultimaStanza.setPersonaggio(cane);
+		return this;
+	}
+	
 	public Map<String,Stanza> getStanze() {
 		return this.stanze;
 	}
+	
 	public Labirinto getLabirinto() {
 		return this.labirinto;
 	}

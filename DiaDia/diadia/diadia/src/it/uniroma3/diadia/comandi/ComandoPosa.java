@@ -10,9 +10,8 @@ import it.uniroma3.diadia.giocatore.Borsa;
  * 
  * @param attrezzo stringa con il nome dell'attrezzo da posare
  */
-public class ComandoPosa extends BaseComando{
+public class ComandoPosa extends Comando{
 
-	private final static String NOME = "ComandoPosa";
 	@Override
 	public void esegui(Partita partita) {
 		IO io = this.getIo();
@@ -36,10 +35,5 @@ public class ComandoPosa extends BaseComando{
 			partita.getStanzaCorrente().addAttrezzo(attrezzoDaPosare);
 			io.mostraMessaggio("L'attrezzo <"+attrezzo+"> e' stato posato.");				
 		}
-	}
-
-	@Override
-	public String getNome() {
-		return NOME;
 	}
 }

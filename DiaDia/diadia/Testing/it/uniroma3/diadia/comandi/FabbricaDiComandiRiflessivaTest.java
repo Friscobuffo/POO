@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FabbricaDiComandiFisarmonicaTest {
+public class FabbricaDiComandiRiflessivaTest {
 
-	FabbricaDiComandiFisarmonica fabbrica;
+	FabbricaDiComandi fabbrica;
 	
 	@Before
 	public void setUp() {
-		fabbrica = new FabbricaDiComandiFisarmonica();
+		fabbrica = new FabbricaDiComandiRiflessiva();
 	}
 
 	@Test
@@ -32,7 +32,7 @@ public class FabbricaDiComandiFisarmonicaTest {
 	public void testCostruisciComandoVaiConDueParametri() {
 		Comando comando = fabbrica.costruisciComando("vai nord sud");
 		assertEquals(comando.getNome(), "ComandoVai");
-		assertEquals(comando.getParametro(), "nord");
+		assertEquals(comando.getParametro(), "nord sud");
 	}
 	
 	@Test

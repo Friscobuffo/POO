@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 
 /**
  * Classe Stanza - una stanza in un gioco di ruolo.
@@ -23,7 +24,8 @@ public class Stanza {
 	private String nome;
 	private Map<String, Attrezzo> attrezzi;
 	private Map<String, Stanza> stanzeAdiacenti;
-	
+	private AbstractPersonaggio personaggio;
+
 	public final static String NORD = "nord";
 	public final static String SUD = "sud";
 	public final static String EST = "est";
@@ -39,6 +41,22 @@ public class Stanza {
 		this.attrezzi = new HashMap<String, Attrezzo>();
 	}
 
+	/**
+	 * Restituisce il nome della stanza.
+	 * @return il nome della stanza
+	 */
+	public String getNome() {
+		return this.nome;
+	}
+
+	public void setPersonaggio(AbstractPersonaggio personaggio) {
+		this.personaggio = personaggio;
+	}
+	
+	public AbstractPersonaggio getPersonaggio() {
+		return this.personaggio;
+	}
+	
 	/**
 	 * Imposta una stanza adiacente.
 	 *
@@ -56,14 +74,6 @@ public class Stanza {
 	 */
 	public Stanza getStanzaAdiacente(String direzione) {
 		return stanzeAdiacenti.get(direzione);
-	}
-
-	/**
-	 * Restituisce il nome della stanza.
-	 * @return il nome della stanza
-	 */
-	public String getNome() {
-		return this.nome;
 	}
 
 	/**
@@ -100,16 +110,18 @@ public class Stanza {
 	public String toString() {
 		StringBuilder risultato = new StringBuilder();
 		risultato.append(this.nome);
-		
+
 		risultato.append("\nUscite: ");
 		List<String> direzioni = this.getDirezioni();
 		for (String direzione : direzioni)
 			risultato.append(" " + direzione);
-		
+
 		risultato.append("\nAttrezzi nella stanza: ");
 		for (Attrezzo attrezzo: this.attrezzi.values()) {
 			risultato.append(attrezzo.toString()+" ");
 		}
+		if(this.personaggio!=null)
+			risultato.append("\nC'e' qualcuno nella stanza.");
 		return risultato.toString();
 	}
 
@@ -145,8 +157,44 @@ public class Stanza {
 	public List<String> getDirezioni() {
 		return new ArrayList<String>(this.stanzeAdiacenti.keySet());
 	}
-	
+
 	public int getNumeroAttrezzi() {
 		return this.attrezzi.size();
 	}
+	
+	public List<Stanza> getStanzeAdiacenti() {
+		return new ArrayList<Stanza>(this.stanzeAdiacenti.values());
+	}
+	
+	public Stanza getStanzaAdiacenteConPiuAttrezzi(){
+		List<Stanza> stanzeAdiacenti = this.getStanzeAdiacenti();
+		if (!stanzeAdiacenti.isEmpty()) {
+			int numeroMassimoAttrezzi = -1;
+			Stanza stanzaNumeroMassimoAttrezzi = null;
+			for(Stanza stanza : stanzeAdiacenti) {
+				if (stanza.getNumeroAttrezzi() > numeroMassimoAttrezzi) {
+					stanzaNumeroMassimoAttrezzi = stanza;
+					numeroMassimoAttrezzi = stanza.getNumeroAttrezzi();
+				}
+			}
+			return stanzaNumeroMassimoAttrezzi;
+		}
+		throw new IllegalArgumentException("Non ha stanze adiacenti");
+	}
+	
+	public Stanza getStanzaAdiacenteConMenoAttrezzi() {
+		List<Stanza> stanzeAdiacenti = this.getStanzeAdiacenti();
+		if (!stanzeAdiacenti.isEmpty()) {
+			int numeroMinimoAttrezzi = stanzeAdiacenti.get(0).getNumeroAttrezzi();
+			Stanza stanzaNumeroMinimoAttrezzi = stanzeAdiacenti.get(0);
+			
+			for(Stanza stanza : stanzeAdiacenti) {
+				if (stanza.getNumeroAttrezzi() < numeroMinimoAttrezzi) {
+					stanzaNumeroMinimoAttrezzi = stanza;
+					numeroMinimoAttrezzi = stanza.getNumeroAttrezzi();
+				}
+			}
+			return stanzaNumeroMinimoAttrezzi;
+		}
+		throw new IllegalArgumentException("Non ha stanze adiacenti");	}
 }
