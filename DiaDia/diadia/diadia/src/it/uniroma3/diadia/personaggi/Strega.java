@@ -6,7 +6,9 @@ import it.uniroma3.diadia.ambienti.Stanza;
 public class Strega extends AbstractPersonaggio {
 
 	public final static String PRESENTAZIONE = "Sono una strega.";
-	public final static String CAMBIATO_STANZA = "Sei stato teletrasportato in un'altra stanza.";
+	public final static String CAMBIATO_STANZA =
+			"La strega ha fatto una magia:\n" +
+			"Sei stato teletrasportato in un'altra stanza.";
 	
 	public Strega(String nome) {
 		super(nome, PRESENTAZIONE);

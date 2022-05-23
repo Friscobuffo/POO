@@ -8,8 +8,11 @@ import it.uniroma3.diadia.DiaDia;
 import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.LabirintoBuilder;
+import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class Fixture {
+	public final static String NOME_STANZA = "Stanza";
 	
 	public static IOSimulator creaSimulazionePartitaEGioca(List<String> istruzioni, Labirinto labirinto) {
 		IOSimulator ioSimulator = new IOSimulator(istruzioni);
@@ -23,6 +26,32 @@ public class Fixture {
 	
 	public static IOSimulator creaSimulazionePartitaEGioca(String... istruzioni) {
 		return creaSimulazionePartitaEGioca(Arrays.asList(istruzioni), creaLabirintoBaseUnaStanza());
+	}
+	
+	public static Stanza creaEImpostaAdiacente(Stanza stanzaIniziale, String nomeStanza, String direzione) {
+		Stanza stanza = new Stanza(nomeStanza);
+		stanzaIniziale.impostaStanzaAdiacente(direzione, stanza);
+		return stanza;
+	}
+	
+	public static Attrezzo creaEInserisciAttrezzoNellaStanza(String nomeAttrezzo, Stanza stanza) {
+		Attrezzo attrezzo = new Attrezzo(nomeAttrezzo, 0);
+		stanza.addAttrezzo(attrezzo);
+		return attrezzo;
+	}
+	
+	public static Stanza creaStanzaQuattroStanzeAdiacentiEAggiungiAttrezzi() {
+		Stanza stanza = new Stanza(NOME_STANZA);
+		
+		creaEImpostaAdiacente(stanza, "Stanza 0 attrezzi", Stanza.NORD);
+		
+		Stanza stanza1 = creaEImpostaAdiacente(stanza, "Stanza 1 attrezzo", Stanza.EST);
+		creaEInserisciAttrezzoNellaStanza("Attrezzo0", stanza1);
+		
+		Stanza stanza2 = creaEImpostaAdiacente(stanza, "Stanza 2 attrezzi", Stanza.SUD);
+		creaEInserisciAttrezzoNellaStanza("Attrezzo1", stanza2);
+		creaEInserisciAttrezzoNellaStanza("Attrezzo2", stanza2);
+		return stanza;
 	}
 	
 	public static Labirinto creaLabirintoBaseUnaStanza() {

@@ -26,6 +26,7 @@ public class FabbricaDiComandiRiflessiva implements FabbricaDiComandi {
 		} catch (Exception e) {
 			comando = new ComandoNonValido();
 		}
+		
 		return comando;
 	}
 
