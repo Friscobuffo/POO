@@ -4,7 +4,7 @@ import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 
-public class ComandoSaluta extends Comando{
+public class ComandoSaluta extends AbstractComando{
 
 private static final String SALUTA_NESSUNO = "Non c'e' nessuno da salutare...";
 	

@@ -1,5 +1,7 @@
 package it.uniroma3.diadia.attrezzi;
 
+import java.util.Comparator;
+
 import it.uniroma3.diadia.ambienti.Stanza;
 
 /**
@@ -60,5 +62,24 @@ public class Attrezzo {
 	@Override
 	public int hashCode() {
 		return this.getNome().hashCode();
+	}
+	
+	public static class ComparatoreAttrezziPerPeso implements Comparator<Attrezzo> {
+
+		@Override
+		public int compare(Attrezzo a1, Attrezzo a2) {
+			int v = a1.getPeso() - a2.getPeso();
+			if (v == 0)
+				return a1.getNome().compareTo(a2.getNome());
+			return v;
+		}
+	}
+	
+	public static class ComparatoreAttrezziPerNome implements Comparator<Attrezzo> {
+
+		@Override
+		public int compare(Attrezzo a1, Attrezzo a2) {
+			return a1.getNome().compareTo(a2.getNome());
+		}
 	}
 }

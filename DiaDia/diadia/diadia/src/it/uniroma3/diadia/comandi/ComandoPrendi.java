@@ -9,7 +9,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * 
  * @param attrezzo stringa con il nome dell'attrezzo da prendere
  */
-public class ComandoPrendi extends Comando {
+public class ComandoPrendi extends AbstractComando {
 
 	@Override
 	public void esegui(Partita partita) {

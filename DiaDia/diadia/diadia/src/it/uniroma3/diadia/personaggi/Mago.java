@@ -31,4 +31,19 @@ public class Mago extends AbstractPersonaggio {
 		}
 		return msg;
 	}
+
+	@Override
+	public String riceviRegalo(Attrezzo attrezzo, Partita partita) {
+		attrezzo = modificaAttrezzo(attrezzo);
+		partita.getStanzaCorrente().addAttrezzo(attrezzo);
+		return "Il mago sembra aver fatto una magia sull'attrezzo "
+				+ "e lo ha posato nella stanza.";
+	}
+	
+	private Attrezzo modificaAttrezzo(Attrezzo attrezzo) {
+		int pesoDimezzato = attrezzo.getPeso() / 2;
+		String nomeAttrezzo = attrezzo.getNome();
+		attrezzo = new Attrezzo(nomeAttrezzo, pesoDimezzato);
+		return attrezzo;
+	}
 }

@@ -2,6 +2,7 @@ package it.uniroma3.diadia.personaggi;
 
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class Strega extends AbstractPersonaggio {
 
@@ -26,5 +27,10 @@ public class Strega extends AbstractPersonaggio {
 		}
 		partita.setStanzaCorrente(prossimaStanza);
 		return CAMBIATO_STANZA;
+	}
+
+	@Override
+	public String riceviRegalo(Attrezzo attrezzo, Partita partita) {
+		return "Ahahahahaahahahaha";
 	}
 }

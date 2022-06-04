@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
@@ -23,13 +24,8 @@ public class Stanza {
 
 	private String nome;
 	private Map<String, Attrezzo> attrezzi;
-	private Map<String, Stanza> stanzeAdiacenti;
+	private Map<Direzione, Stanza> stanzeAdiacenti;
 	private AbstractPersonaggio personaggio;
-
-	public final static String NORD = "nord";
-	public final static String SUD = "sud";
-	public final static String EST = "est";
-	public final static String OVEST = "ovest";
 
 	/**
 	 * Crea una stanza. Non ci sono stanze adiacenti, non ci sono attrezzi.
@@ -38,7 +34,7 @@ public class Stanza {
 	public Stanza(String nome) {
 		this.nome = nome;
 		this.stanzeAdiacenti = new HashMap<>();
-		this.attrezzi = new HashMap<String, Attrezzo>();
+		this.attrezzi = new HashMap<>();
 	}
 
 	/**
@@ -63,7 +59,7 @@ public class Stanza {
 	 * @param direzione direzione in cui sara' posta la stanza adiacente.
 	 * @param stanza stanza adiacente nella direzione indicata dal primo parametro.
 	 */
-	public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
+	public void impostaStanzaAdiacente(Direzione direzione, Stanza stanza) {
 		stanzeAdiacenti.put(direzione, stanza);
 	}
 
@@ -72,7 +68,7 @@ public class Stanza {
 	 * @param direzione
 	 * @return la stanza adiacente
 	 */
-	public Stanza getStanzaAdiacente(String direzione) {
+	public Stanza getStanzaAdiacente(Direzione direzione) {
 		return stanzeAdiacenti.get(direzione);
 	}
 
@@ -112,9 +108,9 @@ public class Stanza {
 		risultato.append(this.nome);
 
 		risultato.append("\nUscite: ");
-		List<String> direzioni = this.getDirezioni();
-		for (String direzione : direzioni)
-			risultato.append(" " + direzione);
+		Set<Direzione> direzioni = this.getDirezioni();
+		for (Direzione direzione : direzioni)
+			risultato.append(" " + direzione.toString().toLowerCase());
 
 		risultato.append("\nAttrezzi nella stanza: ");
 		for (Attrezzo attrezzo: this.attrezzi.values()) {
@@ -154,8 +150,8 @@ public class Stanza {
 		return (this.attrezzi.remove(attrezzo.getNome()) != null);
 	}
 
-	public List<String> getDirezioni() {
-		return new ArrayList<String>(this.stanzeAdiacenti.keySet());
+	public Set<Direzione> getDirezioni() {
+		return this.stanzeAdiacenti.keySet();
 	}
 
 	public int getNumeroAttrezzi() {

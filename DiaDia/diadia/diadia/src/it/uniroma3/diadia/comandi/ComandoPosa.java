@@ -10,7 +10,7 @@ import it.uniroma3.diadia.giocatore.Borsa;
  * 
  * @param attrezzo stringa con il nome dell'attrezzo da posare
  */
-public class ComandoPosa extends Comando{
+public class ComandoPosa extends AbstractComando{
 
 	@Override
 	public void esegui(Partita partita) {

@@ -1,6 +1,7 @@
 package it.uniroma3.diadia.comandi;
 
 import static org.junit.Assert.*;
+import static it.uniroma3.diadia.ambienti.Direzione.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +18,7 @@ public class ComandoVaiTest {
 	private Partita partitaNuova;
 	private ComandoVai comandoVai;
 	
-	private final static String DIREZIONE = "Direzione";
+	private final static String DIREZIONE = "nord";
 	private final static String STANZA_INIZIALE = "Stanza Iniziale";
 	private final static String STANZA_VINCENTE = "Stanza Vincente";
 	
@@ -87,7 +88,7 @@ public class ComandoVaiTest {
 		this.partitaNuova.getStanzaCorrente().addAttrezzo(new Attrezzo(ATTREZZO_SBLOCCANTE, 0));
 		int cfu = this.partitaNuova.getGiocatore().getCfu();
 
-		this.comandoVai.setParametro(DIREZIONE_BLOCCATA);
+		this.comandoVai.setParametro("sud");
 		this.comandoVai.esegui(this.partitaNuova);
 		
 		assertEquals(STANZA_VINCENTE, this.partitaNuova.getStanzaCorrente().getNome());
@@ -98,16 +99,16 @@ public class ComandoVaiTest {
 		return new LabirintoBuilder()
 				.addStanzaIniziale(STANZA_INIZIALE)
 				.addStanzaVincente(STANZA_VINCENTE)
-				.addAdiacenza(STANZA_INIZIALE, STANZA_VINCENTE, DIREZIONE)
+				.addAdiacenza(STANZA_INIZIALE, STANZA_VINCENTE, NORD)
 				.getLabirinto();
 	}
 	
 	private Labirinto creaLabirintoBloccato() {
 		return new LabirintoBuilder()
-				.addStanzaBloccata(STANZA_BLOCCATA, DIREZIONE_BLOCCATA, ATTREZZO_SBLOCCANTE)
+				.addStanzaBloccata(STANZA_BLOCCATA, SUD, ATTREZZO_SBLOCCANTE)
 				.addStanzaIniziale(STANZA_BLOCCATA)
 				.addStanzaVincente(STANZA_VINCENTE)
-				.addAdiacenza(STANZA_BLOCCATA, STANZA_VINCENTE, DIREZIONE_BLOCCATA)
+				.addAdiacenza(STANZA_BLOCCATA, STANZA_VINCENTE, SUD)
 				.getLabirinto();
 	}
 }

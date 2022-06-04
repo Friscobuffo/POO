@@ -1,6 +1,7 @@
 package it.uniroma3.diadia.ambienti;
 
 import static org.junit.Assert.*;
+import static it.uniroma3.diadia.ambienti.Direzione.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -58,7 +59,9 @@ public class LabirintoBuilderTest {
 	public void testAddAdiacenza() {
 		this.builder.addStanza("Stanza1");
 		this.builder.addStanza("Stanza2");
-		this.builder.addAdiacenza("Stanza1", "Stanza2", "Nord");
-		assertEquals("Nord", this.builder.getStanze().get("Stanza1").getDirezioni().get(0));
+		this.builder.addAdiacenza("Stanza1", "Stanza2", NORD);
+		assertTrue(this.builder.getStanze().get("Stanza1").getDirezioni().contains(NORD));
+		assertFalse(this.builder.getStanze().get("Stanza1").getDirezioni().contains(SUD));
+
 	}
 }

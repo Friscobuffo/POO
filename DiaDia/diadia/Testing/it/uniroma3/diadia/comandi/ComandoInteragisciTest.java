@@ -9,7 +9,7 @@ import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.fixture.Fixture;
 import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
-import it.uniroma3.diadia.personaggi.FakePersonaggio;
+import it.uniroma3.diadia.personaggi.AbstractPersonaggioTest;
 
 public class ComandoInteragisciTest {
 
@@ -22,7 +22,7 @@ public class ComandoInteragisciTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		personaggio = new FakePersonaggio(NOME_PERSONAGGIO, PRESENTAZIONE);
+		personaggio = new AbstractPersonaggioTest.FakePersonaggio(NOME_PERSONAGGIO, PRESENTAZIONE);
 		
 		this.partita = new Partita(Fixture.creaLabirintoBaseUnaStanza());
 		this.partita.getStanzaCorrente().setPersonaggio(personaggio);

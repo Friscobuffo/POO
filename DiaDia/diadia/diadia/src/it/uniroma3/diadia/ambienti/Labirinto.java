@@ -1,6 +1,7 @@
 package it.uniroma3.diadia.ambienti;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import static it.uniroma3.diadia.ambienti.Direzione.*;
 
 /**
  * Questa classe modella il labirinto della partita
@@ -44,18 +45,18 @@ public class Labirinto {
 				.addStanza("Aula N11")
 				.addStanza("Laboratorio Campus")
 				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", Stanza.NORD)
-				.addAdiacenza("Atrio", "Aula N11", Stanza.EST)
-				.addAdiacenza("Atrio", "Aula N10", Stanza.SUD)
-				.addAdiacenza("Atrio", "Laboratorio Campus", Stanza.OVEST)
-				.addAdiacenza("Aula N11", "Laboratorio Campus", Stanza.EST)
-				.addAdiacenza("Aula N11", "Atrio", Stanza.OVEST)
-				.addAdiacenza("Aula N10", "Atrio", Stanza.NORD)
-				.addAdiacenza("Aula N10", "Aula N11", Stanza.EST)
-				.addAdiacenza("Aula N10", "Laboratorio Campus", Stanza.OVEST)
-				.addAdiacenza("Laboratorio Campus", "Atrio", Stanza.EST)
-				.addAdiacenza("Laboratorio Campus", "Aula N11", Stanza.OVEST)
-				.addAdiacenza("Biblioteca", "Atrio", Stanza.SUD)
+				.addAdiacenza("Atrio", "Biblioteca", NORD)
+				.addAdiacenza("Atrio", "Aula N11", EST)
+				.addAdiacenza("Atrio", "Aula N10", SUD)
+				.addAdiacenza("Atrio", "Laboratorio Campus", OVEST)
+				.addAdiacenza("Aula N11", "Laboratorio Campus", EST)
+				.addAdiacenza("Aula N11", "Atrio", OVEST)
+				.addAdiacenza("Aula N10", "Atrio", NORD)
+				.addAdiacenza("Aula N10", "Aula N11", EST)
+				.addAdiacenza("Aula N10", "Laboratorio Campus", OVEST)
+				.addAdiacenza("Laboratorio Campus", "Atrio", EST)
+				.addAdiacenza("Laboratorio Campus", "Aula N11", OVEST)
+				.addAdiacenza("Biblioteca", "Atrio", SUD)
 				.getLabirinto();
 	}
 }

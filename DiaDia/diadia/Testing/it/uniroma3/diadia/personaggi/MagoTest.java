@@ -31,5 +31,10 @@ public class MagoTest {
 		mago.agisci(partita);
 		assertNotNull(this.partita.getStanzaCorrente().getAttrezzo(NOME_ATTREZZO));
 	}
-
+	
+	@Test
+	public void testRiceviRegalo() {
+		this.mago.riceviRegalo(new Attrezzo(NOME_ATTREZZO, 10), partita);
+		assertEquals(5, this.partita.getStanzaCorrente().getAttrezzo(NOME_ATTREZZO).getPeso());
+	}
 }

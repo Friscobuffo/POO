@@ -1,6 +1,7 @@
 package it.uniroma3.diadia.ambienti;
 
 import static org.junit.Assert.*;
+import static it.uniroma3.diadia.ambienti.Direzione.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,26 +22,26 @@ public class StanzaTest {
 
 	@Test
 	public void testImpostaStanzaAdiacenteSingola() {
-		Stanza a = Fixture.creaEImpostaAdiacente(this.stanza, STANZA_ADIACENTE, Stanza.NORD);
-		assertEquals(a, this.stanza.getStanzaAdiacente(Stanza.NORD));
+		Stanza a = Fixture.creaEImpostaAdiacente(this.stanza, STANZA_ADIACENTE, NORD);
+		assertEquals(a, this.stanza.getStanzaAdiacente(NORD));
 	}
 
 	@Test
 	public void testCambiaStanzaAdiacente() {
-		Fixture.creaEImpostaAdiacente(this.stanza, NOME, Stanza.NORD);
-		Stanza nuova = Fixture.creaEImpostaAdiacente(this.stanza, NOME, Stanza.NORD);
-		assertEquals(nuova, this.stanza.getStanzaAdiacente(Stanza.NORD));
+		Fixture.creaEImpostaAdiacente(this.stanza, NOME, NORD);
+		Stanza nuova = Fixture.creaEImpostaAdiacente(this.stanza, NOME, NORD);
+		assertEquals(nuova, this.stanza.getStanzaAdiacente(NORD));
 	}
 	
 	@Test
 	public void testGetStanzaAdiacentePresente() {
-		Stanza stanzaAdiacente = Fixture.creaEImpostaAdiacente(this.stanza, STANZA_ADIACENTE, Stanza.NORD);
-		assertEquals(stanzaAdiacente, stanza.getStanzaAdiacente(Stanza.NORD));
+		Stanza stanzaAdiacente = Fixture.creaEImpostaAdiacente(this.stanza, STANZA_ADIACENTE, NORD);
+		assertEquals(stanzaAdiacente, stanza.getStanzaAdiacente(NORD));
 	}
 
 	@Test
 	public void testGetStanzaAdiacenteNonPresente() {
-		assertNull(stanza.getStanzaAdiacente(Stanza.NORD));
+		assertNull(stanza.getStanzaAdiacente(NORD));
 	}
 	
 	@Test
@@ -96,8 +97,8 @@ public class StanzaTest {
 
 	@Test
 	public void testGetDirezioni() {
-		Fixture.creaEImpostaAdiacente(stanza, NOME, Stanza.NORD);
-		assertTrue(this.stanza.getDirezioni().contains(Stanza.NORD));
+		Fixture.creaEImpostaAdiacente(stanza, NOME, NORD);
+		assertTrue(this.stanza.getDirezioni().contains(NORD));
 	}
 
 	@Test

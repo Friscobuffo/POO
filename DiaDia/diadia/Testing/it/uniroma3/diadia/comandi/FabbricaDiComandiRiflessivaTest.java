@@ -15,69 +15,75 @@ public class FabbricaDiComandiRiflessivaTest {
 	}
 
 	@Test
+	public void testCostruisciComandoNull() {
+		ComandoNonValido comando = (ComandoNonValido) fabbrica.costruisciComando(null);
+		assertNull(comando.getParametro());
+	}
+	
+	@Test
+	public void testCostruisciComandoEmpty() {
+		ComandoNonValido comando = (ComandoNonValido) fabbrica.costruisciComando("");
+		assertNull(comando.getParametro());
+	}
+	
+	@Test
 	public void testCostruisciComandoVaiSenzaParametro() {
-		Comando comando = fabbrica.costruisciComando("vai");
-		assertEquals(comando.getNome(), "ComandoVai");
+		ComandoVai comando = (ComandoVai) fabbrica.costruisciComando("vai");
 		assertNull(comando.getParametro());
 	}
 	
 	@Test
 	public void testCostruisciComandoVaiConParametro() {
-		Comando comando = fabbrica.costruisciComando("vai nord");
-		assertEquals(comando.getNome(), "ComandoVai");
+		ComandoVai comando = (ComandoVai) fabbrica.costruisciComando("vai nord");
 		assertEquals(comando.getParametro(), "nord");
 	}
 	
 	@Test
 	public void testCostruisciComandoVaiConDueParametri() {
-		Comando comando = fabbrica.costruisciComando("vai nord sud");
-		assertEquals(comando.getNome(), "ComandoVai");
+		ComandoVai comando = (ComandoVai) fabbrica.costruisciComando("vai nord sud");
 		assertEquals(comando.getParametro(), "nord sud");
 	}
 	
 	@Test
 	public void testCostruisciComandoPosaSenzaParametro() {
-		Comando comando = fabbrica.costruisciComando("posa");
-		assertEquals(comando.getNome(), "ComandoPosa");
+		ComandoPosa comando = (ComandoPosa) fabbrica.costruisciComando("posa");
 		assertNull(comando.getParametro());
 	}
 
 	@Test
 	public void testCostruisciComandoPosaConParametro() {
-		Comando comando = fabbrica.costruisciComando("posa attrezzo");
-		assertEquals(comando.getNome(), "ComandoPosa");
+		ComandoPosa comando = (ComandoPosa) fabbrica.costruisciComando("posa attrezzo");
 		assertEquals(comando.getParametro(), "attrezzo");
 	}
 	
 	@Test
 	public void testCostruisciComandoPrendiSenzaParametro() {
-		Comando comando = fabbrica.costruisciComando("prendi");
-		assertEquals(comando.getNome(), "ComandoPrendi");
+		ComandoPrendi comando = (ComandoPrendi) fabbrica.costruisciComando("prendi");
 		assertNull(comando.getParametro());
 	}
 	
 	@Test
 	public void testCostruisciComandoPrendiConParametro() {
-		Comando comando = fabbrica.costruisciComando("prendi attrezzo");
-		assertEquals(comando.getNome(), "ComandoPrendi");
+		ComandoPrendi comando = (ComandoPrendi) fabbrica.costruisciComando("prendi attrezzo");
 		assertEquals(comando.getParametro(), "attrezzo");
 	}
 	
 	@Test
 	public void testCostruisciComandoAiuto() {
-		Comando comando = fabbrica.costruisciComando("aiuto prova");
-		assertEquals(comando.getNome(), "ComandoAiuto");
+		ComandoAiuto comando = (ComandoAiuto) fabbrica.costruisciComando("aiuto prova");
+		assertNotNull(comando);
 	}
 	
 	@Test
 	public void testCostruisciComandoFine() {
-		Comando comando = fabbrica.costruisciComando("fine prova");
-		assertEquals(comando.getNome(), "ComandoFine");
+		ComandoFine comando = (ComandoFine) fabbrica.costruisciComando("fine prova");
+		assertNotNull(comando);
 	}
 	
 	@Test
 	public void testCostruisciComandoGuarda() {
-		Comando comando = fabbrica.costruisciComando("guarda prova");
-		assertEquals(comando.getNome(), "ComandoGuarda");
+		ComandoGuarda comando = (ComandoGuarda) fabbrica.costruisciComando("guarda prova");
+		assertNotNull(comando);
+
 	}
 }

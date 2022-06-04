@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.fixture.Fixture;
 
 public class StregaTest {
@@ -14,6 +15,7 @@ public class StregaTest {
 	private Strega strega;
 	private Partita partita;
 	private final static String NOME_STREGA = "Strega";
+	private final static String ATTREZZO = "attrezzo";
 	
 	@Before
 	public void setUp() {
@@ -34,5 +36,12 @@ public class StregaTest {
 		this.strega.saluta();
 		this.strega.agisci(partita);
 		assertEquals("Stanza 2 attrezzi", this.partita.getStanzaCorrente().getNome());
+	}
+	
+	@Test
+	public void testRiceviRegalo() {
+		this.strega.riceviRegalo(new Attrezzo(ATTREZZO, 1), partita);
+		assertFalse(this.partita.getStanzaCorrente().hasAttrezzo(ATTREZZO));
+		assertFalse(this.partita.getGiocatore().getBorsa().hasAttrezzo(ATTREZZO));
 	}
 }

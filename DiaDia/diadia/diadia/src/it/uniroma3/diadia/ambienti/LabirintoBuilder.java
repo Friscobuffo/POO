@@ -80,9 +80,9 @@ public class LabirintoBuilder{
 	 * @return riferimento a se stesso (LabirintoBuilder)
 	 */
 	public LabirintoBuilder addStanzaBloccata(String nomeStanzaBloccata,
-			String direzioneBloccata, String attrezzoSbloccante) {
-		StanzaBloccata stanzaBloccata = new StanzaBloccata(nomeStanzaBloccata,
-				direzioneBloccata, attrezzoSbloccante);
+			Direzione direzioneBloccata, String attrezzoSbloccante) {
+		StanzaBloccata stanzaBloccata = 
+				new StanzaBloccata(nomeStanzaBloccata, direzioneBloccata, attrezzoSbloccante);
 		this.stanze.put(nomeStanzaBloccata, stanzaBloccata);
 		this.ultimaStanza = stanzaBloccata;
 		return this;
@@ -115,7 +115,7 @@ public class LabirintoBuilder{
 		return this;
 	}
 
-	public LabirintoBuilder addAdiacenza(String nomeStanza1, String nomeStanza2, String direzione) {
+	public LabirintoBuilder addAdiacenza(String nomeStanza1, String nomeStanza2, Direzione direzione) {
 		Stanza stanza1 = stanze.get(nomeStanza1);
 		Stanza stanza2 = stanze.get(nomeStanza2);
 		stanza1.impostaStanzaAdiacente(direzione, stanza2);

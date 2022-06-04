@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.fixture.Fixture;
 import it.uniroma3.diadia.giocatore.Giocatore;
 
@@ -28,5 +29,21 @@ public class CaneTest {
 		cane.agisci(partita);
 		assertEquals(Giocatore.CFU_INIZIALI -1, this.partita.getGiocatore().getCfu());
 	}
+	
+	@Test
+	public void testRiceviRegaloOsso() {
+		cane.riceviRegalo(new Attrezzo(Cane.OSSO, 1), partita);
+		assertTrue(this.partita.getStanzaCorrente().hasAttrezzo(Cane.CHIAVE));
+	}
 
+	@Test
+	public void testRiceviRegaloNonOsso() {
+		int cfuPrima = this.partita.getGiocatore().getCfu();
+		cane.riceviRegalo(new Attrezzo("attrezzo", 1), partita);
+		int cfuDopo = this.partita.getGiocatore().getCfu();
+		
+		assertFalse(this.partita.getStanzaCorrente().hasAttrezzo(Cane.CHIAVE));
+		assertTrue(this.partita.getStanzaCorrente().hasAttrezzo("attrezzo"));
+		assertEquals(cfuPrima-1, cfuDopo);
+	}
 }

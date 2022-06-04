@@ -11,8 +11,8 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
-import it.uniroma3.diadia.attrezzi.ComparatoreAttrezziPerNome;
-import it.uniroma3.diadia.attrezzi.ComparatoreAttrezziPerPeso;
+import it.uniroma3.diadia.attrezzi.Attrezzo.ComparatoreAttrezziPerNome;
+import it.uniroma3.diadia.attrezzi.Attrezzo.ComparatoreAttrezziPerPeso;
 
 /**
  * Questa classe modella una borsa del giocatore
@@ -146,6 +146,7 @@ public class Borsa {
 	 * @return il sorted set di attrezzi
 	 */
 	public SortedSet<Attrezzo> getSortedSetOrdinatoPerNome() {
+		
 		SortedSet<Attrezzo> attrezzi = new TreeSet<Attrezzo>(new ComparatoreAttrezziPerNome());
 		attrezzi.addAll(this.attrezzi.values());
 		return attrezzi;
