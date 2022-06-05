@@ -6,11 +6,7 @@ import java.util.List;
 
 import it.uniroma3.diadia.DiaDia;
 import it.uniroma3.diadia.IOSimulator;
-import it.uniroma3.diadia.ambienti.Direzione;
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
-import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.attrezzi.Attrezzo;
 import static it.uniroma3.diadia.ambienti.Direzione.*;
 
 public class Fixture {
@@ -22,49 +18,35 @@ public class Fixture {
 		return ioSimulator;
 	}
 	
-	public static IOSimulator creaSimulazionePartitaEGioca(String[] istruzioni, Labirinto labirinto) {
-		return creaSimulazionePartitaEGioca(Arrays.asList(istruzioni), labirinto);
-	}
-	
 	public static IOSimulator creaSimulazionePartitaEGioca(String... istruzioni) {
 		return creaSimulazionePartitaEGioca(Arrays.asList(istruzioni), creaLabirintoBaseUnaStanza());
 	}
 	
-	public static Stanza creaEImpostaAdiacente(Stanza stanzaIniziale, String nomeStanza, Direzione direzione) {
-		Stanza stanza = new Stanza(nomeStanza);
-		stanzaIniziale.impostaStanzaAdiacente(direzione, stanza);
-		return stanza;
-	}
-	
-	public static Attrezzo creaEInserisciAttrezzoNellaStanza(String nomeAttrezzo, Stanza stanza) {
-		Attrezzo attrezzo = new Attrezzo(nomeAttrezzo, 0);
-		stanza.addAttrezzo(attrezzo);
-		return attrezzo;
-	}
-	
-	public static Stanza creaStanzaQuattroStanzeAdiacentiEAggiungiAttrezzi() {
-		Stanza stanza = new Stanza(NOME_STANZA);
-		
-		creaEImpostaAdiacente(stanza, "Stanza 0 attrezzi", NORD);
-		
-		Stanza stanza1 = creaEImpostaAdiacente(stanza, "Stanza 1 attrezzo", EST);
-		creaEInserisciAttrezzoNellaStanza("Attrezzo0", stanza1);
-		
-		Stanza stanza2 = creaEImpostaAdiacente(stanza, "Stanza 2 attrezzi", SUD);
-		creaEInserisciAttrezzoNellaStanza("Attrezzo1", stanza2);
-		creaEInserisciAttrezzoNellaStanza("Attrezzo2", stanza2);
-		return stanza;
+	public static Labirinto creaStanzaQuattroStanzeAdiacentiEAggiungiAttrezzi() {
+		return new Labirinto().new LabirintoBuilder()
+				.addStanzaIniziale(NOME_STANZA).addStanza("Stanza 0 attrezzi")
+				.addAdiacenza(NOME_STANZA, "Stanza 0 attrezzi", NORD)
+				.addStanza("Stanza 1 attrezzo")
+				.addAttrezzo("Attrezzo0", 0)
+				.addAdiacenza(NOME_STANZA, "Stanza 1 attrezzo", EST)
+				.addStanza("Stanza 2 attrezzi")
+				.addAttrezzo("Attrezzo1", 0)
+				.addAttrezzo("Attrezzo2", 0)
+				.addAdiacenza(NOME_STANZA, "Stanza 2 attrezzi", SUD)
+				.getLabirinto();
 	}
 	
 	public static Labirinto creaLabirintoBaseUnaStanza() {
-		return new LabirintoBuilder()
+		Labirinto labirinto = new Labirinto();
+		return labirinto. new LabirintoBuilder()
 				.addStanzaIniziale("Stanza")
 				.addStanzaVincente("Stanza")
 				.getLabirinto();
 	}
 	
 	public static Labirinto creaLabirintoBaseDueStanze() {
-		return new LabirintoBuilder()
+		Labirinto labirinto = new Labirinto();
+		return labirinto. new LabirintoBuilder()
 				.addStanzaIniziale("Stanza Iniziale")
 				.addStanzaVincente("Stanza Vincente")
 				.addAdiacenza("Stanza Iniziale", "Stanza Vincente", NORD)
@@ -72,7 +54,8 @@ public class Fixture {
 	}
 	
 	public static Labirinto creaLabirintoCompleto() {
-		return Labirinto.labirintoDiaDia();
+		return null;
+		//return Labirinto.labirintoDiaDia();
 	}
 	
 	public static List<String> istruzioniPartitaCompleta() {

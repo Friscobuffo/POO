@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
-import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.fixture.Fixture;
 
 public class ComandoStatoTest {
@@ -12,8 +11,7 @@ public class ComandoStatoTest {
 	@Test
 	public void testComandoStatoDiaDia() {
 		String[] istruzioni = {"stato", "fine"};
-		Labirinto labirinto = Fixture.creaLabirintoBaseUnaStanza();
-		Fixture.creaSimulazionePartitaEGioca(istruzioni, labirinto);
+		Fixture.creaSimulazionePartitaEGioca(istruzioni);
 	}
 	
 	@Test

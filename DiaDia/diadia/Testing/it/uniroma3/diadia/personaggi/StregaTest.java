@@ -20,8 +20,7 @@ public class StregaTest {
 	@Before
 	public void setUp() {
 		this.strega = new Strega(NOME_STREGA);
-		Labirinto labirinto = new Labirinto();
-		labirinto.setStanzaIniziale(Fixture.creaStanzaQuattroStanzeAdiacentiEAggiungiAttrezzi());
+		Labirinto labirinto = Fixture.creaStanzaQuattroStanzeAdiacentiEAggiungiAttrezzi();
 		this.partita = new Partita(labirinto);
 	}
 	

@@ -15,41 +15,47 @@ public class StanzaBloccataTest {
 	private final static String ATTREZZO_NON_SBLOCCANTE = "Attrezzo non sbloccante";
 	private final static String STANZA_NORD = "Stanza adiacente nord";
 	
+	
 	private Labirinto labirinto;
+	private Stanza stanzaBloccata;
 	
 	@Before
 	public void setUp() {
-		this.labirinto = new LabirintoBuilder()
+		this.labirinto = new Labirinto(). new LabirintoBuilder()
 				.addStanzaBloccata(STANZA_BLOCCATA, NORD, ATTREZZO_SBLOCCANTE)
 				.addStanzaIniziale(STANZA_BLOCCATA)
 				.addStanzaVincente(STANZA_NORD)
 				.addAdiacenza(STANZA_BLOCCATA, STANZA_NORD, NORD)
+				.addStanza("Stanza")
+				.addAdiacenza(STANZA_BLOCCATA, "Stanza", EST)
 				.getLabirinto();
+		this.stanzaBloccata = this.labirinto.getStanzaIniziale();
+
 	}
 
 	@Test
 	public void testStanzaBloccataSenzaAttrezzoSbloccante() {
-		Stanza stanzaInizialeBloccata = this.labirinto.getStanzaIniziale();
-		Stanza prossimaStanza = stanzaInizialeBloccata.getStanzaAdiacente(NORD);
-		assertEquals(stanzaInizialeBloccata, prossimaStanza);
+		assertEquals(stanzaBloccata, stanzaBloccata.getStanzaAdiacente(NORD));
 	}
 
 	@Test
 	public void testStanzaBloccataConAttrezzoSbloccante() {
-		Stanza stanzaInizialeBloccata = this.labirinto.getStanzaIniziale();
-		stanzaInizialeBloccata.addAttrezzo(new Attrezzo(ATTREZZO_SBLOCCANTE ,0));
+		stanzaBloccata.addAttrezzo(new Attrezzo(ATTREZZO_SBLOCCANTE ,0));
 		Stanza stanzaVincente = this.labirinto.getStanzaVincente();
-		
-		Stanza prossimaStanza = stanzaInizialeBloccata.getStanzaAdiacente(NORD);
+		Stanza prossimaStanza = stanzaBloccata.getStanzaAdiacente(NORD);
 		assertEquals(stanzaVincente, prossimaStanza);
 	}
 	
 	@Test
 	public void testStanzaBloccataConAttrezzoNonSbloccante() {
-		Stanza stanzaInizialeBloccata = this.labirinto.getStanzaIniziale();
-		
-		stanzaInizialeBloccata.addAttrezzo(new Attrezzo(ATTREZZO_NON_SBLOCCANTE ,0));
-		Stanza prossimaStanza = stanzaInizialeBloccata.getStanzaAdiacente(NORD);
-		assertEquals(stanzaInizialeBloccata, prossimaStanza);
+		this.stanzaBloccata.addAttrezzo(new Attrezzo(ATTREZZO_NON_SBLOCCANTE ,0));
+		Stanza prossimaStanza = this.stanzaBloccata.getStanzaAdiacente(NORD);
+		assertEquals(stanzaBloccata, prossimaStanza);
+	}
+	
+	@Test
+	public void testStanzaBloccataVersoDirezioneNonBloccata() {
+		Stanza prossimaStanza = stanzaBloccata.getStanzaAdiacente(EST);
+		assertEquals("Stanza", prossimaStanza.getNome());
 	}
 }

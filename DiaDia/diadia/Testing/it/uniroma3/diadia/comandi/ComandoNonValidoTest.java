@@ -17,7 +17,8 @@ public class ComandoNonValidoTest {
 	public void testComandoNonValido() {
 		ComandoNonValido comandoNonValido = new ComandoNonValido();
 		comandoNonValido.setIo(new IOSimulator());
+		
 		Partita partita = new Partita(Fixture.creaLabirintoBaseUnaStanza());
-		comandoNonValido.esegui(partita);		
+		comandoNonValido.esegui(partita);	
 	}
 }

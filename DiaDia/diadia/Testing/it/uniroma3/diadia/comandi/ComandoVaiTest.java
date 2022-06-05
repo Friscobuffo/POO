@@ -10,8 +10,8 @@ import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.fixture.Fixture;
 
 public class ComandoVaiTest {
 
@@ -35,7 +35,7 @@ public class ComandoVaiTest {
 
 	@Test
 	public void testComandoVaiSenzaParametro() {
-		this.partitaNuova = new Partita(creaLabirintoConDueStanze());
+		this.partitaNuova = new Partita(Fixture.creaLabirintoBaseDueStanze());
 		int cfu = this.partitaNuova.getGiocatore().getCfu();
 		
 		this.comandoVai.esegui(this.partitaNuova);
@@ -46,7 +46,7 @@ public class ComandoVaiTest {
 	
 	@Test
 	public void testComandoVai() {
-		this.partitaNuova = new Partita(creaLabirintoConDueStanze());
+		this.partitaNuova = new Partita(Fixture.creaLabirintoBaseDueStanze());
 		int cfu = this.partitaNuova.getGiocatore().getCfu();
 		
 		this.comandoVai.setParametro(DIREZIONE);
@@ -58,7 +58,7 @@ public class ComandoVaiTest {
 	
 	@Test
 	public void testComandoVaiConParametroSbagliato() {
-		this.partitaNuova = new Partita(creaLabirintoConDueStanze());
+		this.partitaNuova = new Partita(Fixture.creaLabirintoBaseDueStanze());
 		int cfu = this.partitaNuova.getGiocatore().getCfu();
 
 		this.comandoVai.setParametro("parametro sbagliato");
@@ -95,16 +95,8 @@ public class ComandoVaiTest {
 		assertEquals(cfu-1, this.partitaNuova.getGiocatore().getCfu());
 	}
 	
-	private Labirinto creaLabirintoConDueStanze() {
-		return new LabirintoBuilder()
-				.addStanzaIniziale(STANZA_INIZIALE)
-				.addStanzaVincente(STANZA_VINCENTE)
-				.addAdiacenza(STANZA_INIZIALE, STANZA_VINCENTE, NORD)
-				.getLabirinto();
-	}
-	
 	private Labirinto creaLabirintoBloccato() {
-		return new LabirintoBuilder()
+		return new Labirinto(). new LabirintoBuilder()
 				.addStanzaBloccata(STANZA_BLOCCATA, SUD, ATTREZZO_SBLOCCANTE)
 				.addStanzaIniziale(STANZA_BLOCCATA)
 				.addStanzaVincente(STANZA_VINCENTE)

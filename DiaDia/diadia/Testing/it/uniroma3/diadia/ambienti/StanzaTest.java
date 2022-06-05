@@ -22,21 +22,19 @@ public class StanzaTest {
 
 	@Test
 	public void testImpostaStanzaAdiacenteSingola() {
-		Stanza a = Fixture.creaEImpostaAdiacente(this.stanza, STANZA_ADIACENTE, NORD);
-		assertEquals(a, this.stanza.getStanzaAdiacente(NORD));
+		Stanza adiacente = new Stanza(STANZA_ADIACENTE);
+		stanza.impostaStanzaAdiacente(NORD, adiacente);
+		assertEquals(adiacente, this.stanza.getStanzaAdiacente(NORD));
 	}
 
 	@Test
 	public void testCambiaStanzaAdiacente() {
-		Fixture.creaEImpostaAdiacente(this.stanza, NOME, NORD);
-		Stanza nuova = Fixture.creaEImpostaAdiacente(this.stanza, NOME, NORD);
+		Stanza adiacente = new Stanza(STANZA_ADIACENTE);
+		stanza.impostaStanzaAdiacente(NORD, adiacente);
+		
+		Stanza nuova = new Stanza(STANZA_ADIACENTE+" nuova");
+		stanza.impostaStanzaAdiacente(NORD, nuova);
 		assertEquals(nuova, this.stanza.getStanzaAdiacente(NORD));
-	}
-	
-	@Test
-	public void testGetStanzaAdiacentePresente() {
-		Stanza stanzaAdiacente = Fixture.creaEImpostaAdiacente(this.stanza, STANZA_ADIACENTE, NORD);
-		assertEquals(stanzaAdiacente, stanza.getStanzaAdiacente(NORD));
 	}
 
 	@Test
@@ -51,8 +49,9 @@ public class StanzaTest {
 
 	@Test
 	public void testGetAttrezzoPresenteNellaStanza() {
-		Attrezzo a = Fixture.creaEInserisciAttrezzoNellaStanza(ATTREZZO, stanza);
-		assertEquals(a, this.stanza.getAttrezzo(ATTREZZO));
+		Attrezzo attrezzo = new Attrezzo(ATTREZZO, 0);
+		stanza.addAttrezzo(attrezzo);
+		assertEquals(attrezzo, this.stanza.getAttrezzo(ATTREZZO));
 	}
 	
 	@Test
@@ -62,13 +61,15 @@ public class StanzaTest {
 	
 	@Test
 	public void testGetAttrezzoNonPresenteNellaStanzaConAttrezzi() {
-		Fixture.creaEInserisciAttrezzoNellaStanza(ATTREZZO+1, stanza);
-		assertNull(this.stanza.getAttrezzo(ATTREZZO));
+		Attrezzo attrezzo = new Attrezzo(ATTREZZO, 0);
+		this.stanza.addAttrezzo(attrezzo);
+		assertNull(this.stanza.getAttrezzo(ATTREZZO+" non presente"));
 	}
 	
 	@Test
 	public void testHasAttrezzoPresenteNellaStanza() {
-		Fixture.creaEInserisciAttrezzoNellaStanza(ATTREZZO, stanza);
+		Attrezzo attrezzo = new Attrezzo(ATTREZZO, 0);
+		stanza.addAttrezzo(attrezzo);
 		assertTrue(this.stanza.hasAttrezzo(ATTREZZO));
 	}
 	
@@ -79,51 +80,56 @@ public class StanzaTest {
 	
 	@Test
 	public void testHasAttrezzoNonPresenteNellaStanzaConAttrezzi() {
-		Fixture.creaEInserisciAttrezzoNellaStanza("a", stanza);
-		assertFalse(this.stanza.hasAttrezzo(ATTREZZO));
+		Attrezzo attrezzo = new Attrezzo(ATTREZZO, 0);
+		stanza.addAttrezzo(attrezzo);
+		assertFalse(this.stanza.hasAttrezzo(ATTREZZO+" non presente"));
 	}
 
 	@Test
 	public void testRemoveAttrezzoPresenteNellaStanza() {
-		Attrezzo a = Fixture.creaEInserisciAttrezzoNellaStanza(ATTREZZO, stanza);
-		assertTrue(this.stanza.removeAttrezzo(a));
+		Attrezzo attrezzo = new Attrezzo(ATTREZZO, 0);
+		stanza.addAttrezzo(attrezzo);
+		assertTrue(this.stanza.removeAttrezzo(attrezzo));
 	}
 	
 	@Test
 	public void testRemoveAttrezzoNonPresenteNellaStanza() {
-		Attrezzo a = new Attrezzo(ATTREZZO, 10);
+		Attrezzo a = new Attrezzo(ATTREZZO+" non presente", 10);
 		assertFalse(this.stanza.removeAttrezzo(a));
 	}
 
 	@Test
 	public void testGetDirezioni() {
-		Fixture.creaEImpostaAdiacente(stanza, NOME, NORD);
+		Stanza adiacente = new Stanza(STANZA_ADIACENTE);
+		stanza.impostaStanzaAdiacente(NORD, adiacente);
+		
 		assertTrue(this.stanza.getDirezioni().contains(NORD));
 	}
 
 	@Test
 	public void testGetNumeroAttrezzi() {
 		assertEquals(0, this.stanza.getNumeroAttrezzi());
-		Fixture.creaEInserisciAttrezzoNellaStanza(ATTREZZO, stanza);
+
+		stanza.addAttrezzo(new Attrezzo(ATTREZZO, 0));
 		assertEquals(1, this.stanza.getNumeroAttrezzi());
 		
-		Fixture.creaEInserisciAttrezzoNellaStanza(ATTREZZO, stanza);
+		stanza.addAttrezzo(new Attrezzo(ATTREZZO, 0));
 		assertEquals(1, this.stanza.getNumeroAttrezzi());
 		
-		Fixture.creaEInserisciAttrezzoNellaStanza(ATTREZZO+1, stanza);
+		stanza.addAttrezzo(new Attrezzo(ATTREZZO+"1", 0));
 		assertEquals(2, this.stanza.getNumeroAttrezzi());
 	}
 	
 	@Test
 	public void testGetStanzaAdiacenteConPiuAttrezzi() {
-		Stanza stanza = Fixture.creaStanzaQuattroStanzeAdiacentiEAggiungiAttrezzi();
+		Stanza stanza = Fixture.creaStanzaQuattroStanzeAdiacentiEAggiungiAttrezzi().getStanzaIniziale();
 		Stanza stanzaConPiuAttrezzi = stanza.getStanzaAdiacenteConPiuAttrezzi();
 		assertEquals("Stanza 2 attrezzi", stanzaConPiuAttrezzi.getNome());
 	}
 	
 	@Test
 	public void testGetStanzaAdiacenteConMenoAttrezzi() {
-		Stanza stanza = Fixture.creaStanzaQuattroStanzeAdiacentiEAggiungiAttrezzi();
+		Stanza stanza = Fixture.creaStanzaQuattroStanzeAdiacentiEAggiungiAttrezzi().getStanzaIniziale();
 		Stanza stanzaConMenoAttrezzi = stanza.getStanzaAdiacenteConMenoAttrezzi();
 		assertEquals("Stanza 0 attrezzi", stanzaConMenoAttrezzi.getNome());
 	}	

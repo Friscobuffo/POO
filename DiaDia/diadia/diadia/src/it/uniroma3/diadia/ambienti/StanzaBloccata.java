@@ -13,20 +13,15 @@ public class StanzaBloccata extends Stanza{
 
 	@Override
 	public Stanza getStanzaAdiacente(Direzione direzione) {
-		if (direzione.equals(direzioneBloccata)) {
-			if (this.hasAttrezzo(attrezzoSbloccaDirezione))
-				return super.getStanzaAdiacente(direzione);
-			else return this;
-		}
-		else return super.getStanzaAdiacente(direzione);
+		if (!direzione.equals(direzioneBloccata) || this.hasAttrezzo(attrezzoSbloccaDirezione)) 
+			return super.getStanzaAdiacente(direzione);
+		return this;
 	}
 	
 	@Override
 	public String getDescrizione() {
 		if (this.hasAttrezzo(attrezzoSbloccaDirezione))
 			return super.getDescrizione();
-		else {
-			return (super.getDescrizione() + "\nLa direzione '" + this.direzioneBloccata + "' e' bloccata");
-		}
+		return (super.getDescrizione()+ "\nLa direzione '" +this.direzioneBloccata+ "' e' bloccata");
 	}
 }

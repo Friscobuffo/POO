@@ -1,9 +1,12 @@
 package it.uniroma3.diadia;
 
+import java.io.IOException;
+
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.comandi.AbstractComando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
+import it.uniroma3.diadia.eccezioni.FormatoFileNonValidoException;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -68,9 +71,11 @@ public class DiaDia {
 		return this.partita.isFinita();
 	}   
 
-	public static void main(String[] argc) {
-		IO io = new IOConsole();		
-		DiaDia gioco = new DiaDia(io, Labirinto.labirintoDiaDia());
+	public static void main(String[] argc) throws IOException, FormatoFileNonValidoException {
+		IO io = new IOConsole();
+		Labirinto labirinto = new Labirinto("resources/labirinto1.txt");
+		
+		DiaDia gioco = new DiaDia(io, labirinto);
 		gioco.gioca();
 	}
 }
